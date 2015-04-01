@@ -104,3 +104,9 @@ docker run --rm -v $(pwd):/src centurylink/golang-builder
 docker build -t <username>/go-mysql-microservice:0.1 ./
 
 ```
+
+In order for `docker run --rm -v $(pwd):/src centurylink/golang-builder` to work you need to have the github url on the top line of main.go. It should look like this:
+```
+package main // import "github.com/cloudspace/Go-MySQL-Microservice"
+```
+You also must push your code to github before building the docker image.
