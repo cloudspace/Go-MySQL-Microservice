@@ -1,4 +1,5 @@
 microservice:
+  spec_version: '2.0'
   name: 'Go-MySQL-Microservice'
   description: 'A MySql Query executer for Go'
   docker_image: 'izackp/go-mysql-microservice'
