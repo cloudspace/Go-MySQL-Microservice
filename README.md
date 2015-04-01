@@ -2,16 +2,17 @@
 A MySql Query executer for Go
 
 #### Usage
-Input must have 2 arguments:
+Input must have 3 arguments:
 
-1.  -connectionURI (refer to https://github.com/go-sql-driver/mysql DSN)
+1.  -connectionURI (refer to https://github.com/go-sql-driver/mysql DSN; replace password with %s)
+2.  -password
 2.  -query
 
 #### Example Input - Output
 -
 Input:
 ```
-go run main.go -connectionURI="root:password@tcp(127.0.0.1:3306)/adventureworks" -query="CREATE DATABASE southwind"
+go run main.go -connectionURI="root:%s@tcp(127.0.0.1:3306)/adventureworks" -password="password" -query="CREATE DATABASE southwind"
 ```
 Output (Success):
 ```
@@ -20,7 +21,7 @@ Output (Success):
 -
 Input:
 ```
-go run main.go -connectionURI="root:password@tcp(127.0.0.1:3306)/adventureworks" -query="CREATE DATABASE southwind"
+go run main.go -connectionURI="root:%s@tcp(127.0.0.1:3306)/adventureworks" -password="password" -query="CREATE DATABASE southwind"
 ```
 Output (Failure):
 ```
@@ -31,7 +32,7 @@ Output (Failure):
 -
 Input:
 ```
-go run main.go -connectionURI="root:password@tcp(127.0.0.1:3306)/adventureworks" -query="Show Tables"
+go run main.go -connectionURI="root:%s@tcp(127.0.0.1:3306)/adventureworks" -password="password" -query="Show Tables"
 ```
 
 Output (Shortened):
@@ -57,7 +58,7 @@ Output (Shortened):
 -
 Input:
 ```
-go run main.go -connectionURI="root:password@tcp(127.0.0.1:3306)/adventureworks" -query="SELECT * FROM vendor LIMIT 2"
+go run main.go -connectionURI="root:%s@tcp(127.0.0.1:3306)/adventureworks" -password="password" -query="SELECT * FROM vendor LIMIT 2"
 ```
 
 Output:

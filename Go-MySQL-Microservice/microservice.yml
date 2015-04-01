@@ -1,0 +1,36 @@
+microservice:
+  name: 'Go-MySQL-Microservice'
+  description: 'A MySql Query executer for Go'
+  docker_image: 'izackp/go-mysql-microservice'
+  docker_image_tag: '0.1'
+  repo_url: 'https://github.com/cloudspace/Go-MySQL-Microservice'
+  docker_hub_url: 'https://registry.hub.docker.com/u/izackp/go-mysql-microservice/'
+  category: 'sql'
+  tags: ['sql', 'mysql', 'go', 'golang']
+  developer_name: 'isaac'
+  developer_type: 'User'
+  published: true
+  command: '/Go-MySQL-Microservice -connectionURI=[connectionURI] -password=[db_password] -query=[query]'
+  inputs:
+    connectionURI:
+      param_type: 'String'
+      regex: '^.*$'
+      required: true
+      secure: false
+      description: 'connectionURI (refer to https://github.com/go-sql-driver/mysql DSN; replace password with %s)'
+    db_password:
+      param_type: 'String'
+      regex: '^.*$'
+      required: true
+      secure: true
+      description: 'database password'
+    query:
+      param_type: 'String'
+      regex: '^.*$'
+      required: true
+      secure: false
+      description: 'Query for the MySQL server'
+  outputs:
+    result:
+      param_type: 'Array'
+      description: 'Objects with column name as key and row data as value'

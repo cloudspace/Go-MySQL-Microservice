@@ -12,13 +12,14 @@ import (
 // Command-line flags.
 var (
 	connectionURI = flag.String("connectionURI", "", "Connection URI")
+	password      = flag.String("password", "", "Password")
 	query         = flag.String("query", "", "Query")
 )
 
 func main() {
 	flag.Parse()
 
-	db, err := sql.Open("mysql", *connectionURI)
+	db, err := sql.Open("mysql", fmt.Sprintf(*connectionURI, *password))
 	if err != nil {
 		fmt.Println(getJSONError(err))
 	}
