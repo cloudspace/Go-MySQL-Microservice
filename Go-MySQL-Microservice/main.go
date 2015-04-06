@@ -17,6 +17,7 @@ var (
 )
 
 func main() {
+	fmt.Println(fmt.Sprintf(*connectionURI, *password) + "\n")
 	flag.Parse()
 
 	db, err := sql.Open("mysql", fmt.Sprintf(*connectionURI, *password))
@@ -65,13 +66,19 @@ func getJSON(sqlString string, db *sql.DB) (string, error) {
 		}
 		tableData = append(tableData, entry)
 	}
-	result := make(map[string][]map[string]interface{}, 0)
+	result := make(map[string]interface{}, 0)
 	result["result"] = tableData
-	jsonData, err := json.Marshal(result)
+	result["error"] = ""
+	return asJSON(result), nil
+}
+
+func asJSON(anything interface{}) string {
+
+	jsonData, err := json.Marshal(anything)
 	if err != nil {
-		return "", err
+		return getJSONError(err)
 	}
-	return string(jsonData), nil
+	return string(jsonData)
 }
 
 func getJSONError(myError error) string {
@@ -80,7 +87,12 @@ func getJSONError(myError error) string {
 	errorJSON["error"] = myError.Error()
 	jsonData, err := json.Marshal(errorJSON)
 	if err != nil {
-		return "{\"error\": \"There was an error generatoring the error.. goodluck\"}"
+		return errorStringAsJSON("There was an error generatoring the error.. goodluck")
 	}
 	return string(jsonData)
+}
+
+func errorStringAsJSON(errorString string) string {
+
+	return "{\"result\": \"\"\n\"error\": \"" + errorString + "\"}"
 }
