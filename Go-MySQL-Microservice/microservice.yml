@@ -3,7 +3,7 @@ microservice:
   name: 'Go-MySQL-Microservice'
   description: 'A MySql Query executer for Go'
   docker_image: 'izackp/go-mysql-microservice'
-  docker_image_tag: '0.1'
+  docker_image_tag: '0.2'
   repo_url: 'https://github.com/cloudspace/Go-MySQL-Microservice'
   docker_hub_url: 'https://registry.hub.docker.com/u/izackp/go-mysql-microservice/'
   category: 'sql'
