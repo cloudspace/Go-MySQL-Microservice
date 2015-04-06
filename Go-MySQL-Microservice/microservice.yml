@@ -11,7 +11,7 @@ microservice:
   developer_name: 'isaac'
   developer_type: 'User'
   published: true
-  command: '/Go-MySQL-Microservice -connectionURI=[connectionURI] -password=[db_password] -query=[query]'
+  command: '/Go-MySQL-Microservice [connectionURI] [db_password] [query]'
   inputs:
     connectionURI:
       param_type: 'String'
